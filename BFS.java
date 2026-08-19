@@ -28,12 +28,14 @@ public class BFS
         //while we still have nodes to visit
         while (!queue.isEmpty()) {
             
+            // remove and print the node to visit it 
             String current =  queue.poll();
             System.out.println(current);
-
-            for(String neighboor : graph.get(current)){
+            
+            //add the visited node's neighboors to the queue
+            for(String neighboor : graph.get(current))
                 queue.add(neighboor);
-            }
+            
         }
 
     }
