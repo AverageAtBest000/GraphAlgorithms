@@ -14,11 +14,13 @@ public class HasPathUndirected{
 
         HashMap<String, ArrayList<String>> graph = getGraph(grph);
 
+        System.out.print(hasPath(graph, "i", "l"));
+
     }
 
-    public static boolean hasPath(HasMap<String, ArrayList<String> graph, String startNode, String endNode){
+    public static boolean hasPath(HashMap<String, ArrayList<String>> graph, String startNode, String endNode){
 
-        Queue<String>() queue =  new LinkedList<>();
+        Queue<String> queue =  new LinkedList<>();
         queue.add(startNode);
         HashSet<String> visited = new HashSet<>();
 
@@ -44,8 +46,8 @@ public class HasPathUndirected{
 
         for(String[] edge : inputArray){
 
-            graph.computeIfAbset(edge[0], k -> (new ArrayList<>())).add(edge[1]);
-            graph.computeIfAbset(edge[1], k -> (new ArrayList<>())).add(edge[0]);
+            graph.computeIfAbsent(edge[0], k -> new ArrayList<>()).add(edge[1]);
+            graph.computeIfAbsent(edge[1], k -> new ArrayList<>()).add(edge[0]);
         }
 
         return graph;
