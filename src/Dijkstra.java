@@ -59,21 +59,20 @@ class Dijkstra {
     Arrays.fill(dists, Integer.MAX_VALUE);
     boolean[] visited = new boolean[graph.size()];
 
-    queue.add(new Node(startingNode, 0));
+    queue.add(new Node(0, startingNode));
     dists[startingNode] = 0;
 
     while (!queue.isEmpty()) {
       Node current = queue.poll();
+      if (visited[current.value])
+        continue;
       visited[current.value] = true;
 
       for (Node neighboor : graph.get(current.value)) {
 
-        if (dists[neighboor.value] > dists[current.value] + neighboor.weight) {
+        if (!visited[neighboor.value] && dists[neighboor.value] > dists[current.value] + neighboor.weight) {
           dists[neighboor.value] = dists[current.value] + neighboor.weight;
-        }
-
-        if (!visited[neighboor.value]) {
-          queue.add(neighboor);
+          queue.add(new Node(dists[neighboor.value], neighboor.value));
         }
       }
     }
